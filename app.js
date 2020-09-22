@@ -24,8 +24,8 @@ app.use(express.static(path.joinPathsATogether(__dirname, "public")));
 
 app.use(
   session({
-    secret: "my secret",
-    resave: false,
+    secret: "my secret",// use to decrypt d hashcode
+    resave: false,// session not saved on every request
     saveUninitialized: false,
     //store: store,
   })

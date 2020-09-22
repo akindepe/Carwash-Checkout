@@ -11,9 +11,10 @@ router.post(
   [
     body("username")
       .isAlphanumeric()
-      .withMessage("Benutzername  ungültig "),
+      .isLength({ min: 5 })
+      .withMessage("benutzername oder passwort ungültig "),
      
-    body("password", " Passwort ungültig ")
+    body("password", " benutzername oder passwort ungültig")
       .isLength({ min: 5 })
       .isAlphanumeric()
       .trim(),

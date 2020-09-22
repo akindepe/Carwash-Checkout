@@ -5,7 +5,7 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #011627;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -18,7 +18,89 @@
   font-size: 36px;
   margin-left: 50px;
 }
-#open-side-nav{
-    font-size:30px;
-    cursor:pointer
+#open-side-nav {
+  font-size: 30px;
+  cursor: pointer;
+}
+.whole-page-dispaly {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto 40%;
+  grid-template-rows: 5% auto  25%;
+  grid-template-areas:
+    "head  head"
+    "services  displays "
+    
+    "commands  commands ";
+}
+#open-side-nav {
+  background-color: #011627;
+  color: #818181;
+  grid-area: head;
+}
+.services-rendered {
+  grid-area: services;
+  
+}
+.selected-items {
+  grid-area: displays;
+  
+}
+.page-bottom {
+  grid-area: commands;
+  
+}
+ .button {
+  background-color: #725AC1; 
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+ 
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.services-rendered {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+
+.main-service{
+  background-color: #3171a5;
+ 
+}
+.extra-service{
+  background-color: rgb(37, 95, 112);
+ 
+  
+}
+
+ .page-bottom{
+   display: grid;
+   
+   background-color: black;
+   
+  
+ }
+ 
+#fertig{
+   background-color: #F6EFEE;
+   grid-column-start: 6;
+   grid-column-end: 8;
+}
+#cash-payment{
+  background-color: #F6EFEE;
+}
+.selected-items {
+  display: grid;
+  grid-template-rows: 3% 30% 5% 50%;
+}
+#cashier{
+  border-bottom-style: solid;
+}
+#total-price{
+ border-top-style: solid;
+ border-bottom-style: solid;
 }

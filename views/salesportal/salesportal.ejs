@@ -9,12 +9,37 @@
         <a href="#">Passwortändern</a>
         <a href="#">Abmelden</a>
     </div>
-    <h3 id="open-side-nav">&#9776; Menu</h3>
-        <div class= 'Services'>
-            
+    
+    <div class= "whole-page-dispaly">
+        <h3 id="open-side-nav">&#9776; Menu</h3>
+        <div class='services-rendered'>
+            <% for(let service of services) { %>
+                
+                <button class="<% if (service.service_type_id === 1){ %>main-service<%} else{%>extra-service<%}%> button"
+                 id= "<%=service.service_name %>"><%=service.service_name%>
+                 <%= service.service_price %>€ </button>
+                <% } %>
         </div>
-    
-    
+        <div class="selected-items">
+            <h5 id="cashier" >Kassierer: Name</h5>
+            <div class = "choosen-products">
+                
+            </div>
+           <h4 id="total-price">Gesamt        0.00€</h4>
+           
+           <div class="prepaid-card-info">
+               <h3>Mr Jonson</h3>
+           </div>
+        </div>
+        <div class="page-bottom">
+            <button class="button" id="storno-receipt">Storno</button>
+            <button class="button" id="reklam">Reklamation</button>
+            <button type="reset" id="reset" class="button">Reset</button>
+            <button class="button"id="cash-payment" disabled>Bar</button>
+            <button class="button"id="prepaid" >Prepaid Karte</button>
+            <button class="button"  id="fertig"  disabled>Fertig</button>
+        </div>
+    </div>
     <script src="/scripts/salesportal.js"></script>
     <noscript>Sie sollten javascript aktivieren</noscript>
 </body>
