@@ -41,18 +41,3 @@ input[type="submit"]:hover {
   background-color: #8d86c9;
 }
 
-.user-message {
-  margin: auto;
-  width: 90%;
- 
-  
-  border-radius: 3px;
- 
-  text-align: center;
-}
-
-.user-message--error {
-  border-color: red;
-  
-  color: red;
-}

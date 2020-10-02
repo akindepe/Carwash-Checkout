@@ -1,0 +1,48 @@
+#cancel-receipt-form {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+.cancel-receipt-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  height: 40%;
+}
+.form-container {
+  text-align: center;
+ 
+  padding: 16px 20px;
+  border: none;
+ 
+  opacity: 0.8;
+}
+#cancel-title{
+  padding-bottom: 30px;
+}
+#ticket-number,#reset-content,#submit-storno,#cancel-storno{
+  padding: 16px 20px;
+  margin-bottom:10px;
+  width: 20% ;
+  height: 10%;
+}
+.form-container #cancel-storno{
+    background-color: red;
+    margin-top:20px;
+}
+.form-container #submit-storno{
+    background-color: green;
+    margin-top:20px;
+}
+.form-container #reset-content{
+    background-color: #224870;
+}
+

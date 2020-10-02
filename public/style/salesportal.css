@@ -104,3 +104,6 @@
  border-top-style: solid;
  border-bottom-style: solid;
 }
+#choosen-items{
+  list-style-type: none;
+}
