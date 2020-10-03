@@ -3,11 +3,11 @@
 
 </head>
 <body>
-    <% if (errorMessage) { %>
-    <div class="user-message user-message--error"><%= errorMessage %></div>
-    <% } %>
+   
     <form action="<%= path %>" method="POST">
-       
+        <% if (errorMessage) { %>
+        <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
         <div class="login-input">
             <h2 id="login-portal-name"><%= portalName %></h2>
             <br>
@@ -19,7 +19,7 @@
             <label for="password">Passwort</label>
             <br />
             <input type="password" name="password" id="password" placeholder="passwort eingeben" value="<%= oldInput.password %>" />
-           
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="submit" value="Anmelden" />
         </div>
        

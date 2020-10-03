@@ -9,7 +9,7 @@ router.get("/login", authController.getLogin);
 router.post(
   "/login",
   [
-    body("username")
+    check("username")
       .isAlphanumeric()
       .isLength({ min: 5 })
       .withMessage("benutzername oder passwort ungültig "),
@@ -21,5 +21,6 @@ router.post(
   ],
   authController.postLogin
 );
+router.get("/logout", authController.postLogout);
 
 module.exports = router;

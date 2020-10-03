@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akindepe/Carwash-App.git"
+    "url": "git+https://github.com/akindepe/Carwash-Checkout.git"
   },
   "author": "Peter Akindeinde",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akindepe/Carwash-App/issues"
+    "url": "https://github.com/akindepe/Carwash-Checkout/issues"
   },
-  "homepage": "https://github.com/akindepe/Carwash-App#readme",
+  "homepage": "https://github.com/akindepe/Carwash-Checkout#readme",
   "devDependencies": {
     "nodemon": "^2.0.4"
   },

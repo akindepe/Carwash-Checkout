@@ -1,5 +1,11 @@
 <%- include('../includes/head.ejs') %>
+
 <link rel="stylesheet" href="/style/salesportal.css">
+<link rel="stylesheet" href="/style/popups.css">
+
+<script   defer src="/scripts/salesportal.js"></script>
+
+<noscript>Sie sollten javascript aktivieren</noscript>
 </head>
 <body>
     
@@ -7,23 +13,44 @@
         <a href="javascript:void(0)" class="closebtn" id="close-btn">&times;</a>
         <a href="#">Kassiererverwaltung</a>
         <a href="#">Passwortändern</a>
-        <a href="#">Abmelden</a>
+        <a href="/logout">Abmelden</a>
     </div>
+    <div id="cancel-receipt-form">
+        <div class="cancel-receipt-content" >
+            <div class="form-container">
+                <h2 id="cancel-title">Stornierung</h2>
+                <div style="display: none;" id="ticket-invalid" class="user-message user-message--error"></div>
+                <input type="number" name="ticket-number" id="ticket-number" placeholder="Ticket Nummer" />
+                <button type="reset" id="reset-content">Löschen</button>
+                <br>
+               <button onclick="cancelPlacedOrder()"  id="submit-storno">OK</button>
+               
+               <button id="cancel-storno">Abbrechen</button>
+            
+                
+            </div>
+            
+
+        </div>
+    </div>
+    
     
     <div class= "whole-page-dispaly">
         <h3 id="open-side-nav">&#9776; Menu</h3>
         <div class='services-rendered'>
             <% for(let service of services) { %>
-                
-                <button class="<% if (service.service_type_id === 1){ %>main-service<%} else{%>extra-service<%}%> button"
-                 id= "<%=service.service_name %>"><%=service.service_name%>
-                 <%= service.service_price %>€ </button>
+                <button onclick="wasSelected(this.id)" class="<% if (service.service_type_id === 1){ %>main-service<%} else{%>extra-service<%}%> button"id= "<%=service.service_name %>"
+                value ="<%=service.service_price %>"
+                ><%= service.service_name%> <%=service.service_price %>€ 
+                </button>
                 <% } %>
         </div>
         <div class="selected-items">
-            <h5 id="cashier" >Kassierer: Name</h5>
-            <div class = "choosen-products">
-                
+            <h5 id="cashier" >Kassierer: <%= cashierName %></h5>
+            <div class = "choosen-products" id=>
+               <ul id="choosen-items">
+                  
+               </ul>
             </div>
            <h4 id="total-price">Gesamt        0.00€</h4>
            
@@ -34,13 +61,14 @@
         <div class="page-bottom">
             <button class="button" id="storno-receipt">Storno</button>
             <button class="button" id="reklam">Reklamation</button>
+            <button class="button"id="prepaid" >Prepaid Karte</button>
             <button type="reset" id="reset" class="button">Reset</button>
             <button class="button"id="cash-payment" disabled>Bar</button>
-            <button class="button"id="prepaid" >Prepaid Karte</button>
+            
             <button class="button"  id="fertig"  disabled>Fertig</button>
         </div>
     </div>
-    <script src="/scripts/salesportal.js"></script>
-    <noscript>Sie sollten javascript aktivieren</noscript>
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+<script src="/scripts/popups.js"></script>
 </body>
 </html>

@@ -3,7 +3,6 @@ const Users = require('../models/users');
 
 
 exports.getLogin = (req, res, next) => {
-  
   let message = req.flash('error');
   if(message.length> 0){
     message = message[0];
@@ -20,25 +19,25 @@ exports.getLogin = (req, res, next) => {
       username: '',
       password: ''
     },
-    validationErrors: []
+   // validationErrors: []
   });
 };
 exports.postLogin = async (req, res, next) => {
   
   const username = req.body.username;
   const password = req.body.password;
-  const errors = validationResult(req);
+  const errors = validationResult(req);// errors from aauth route
   if(!errors.isEmpty()){
     return res.status(422).render("auth/login", {
       path: "/login",
-      pageTitle: "Login",
+      pageTitle: "Anmelden",
       portalName: "Waschstraße",
       errorMessage: errors.array()[0].msg,
       oldInput: {
         username: username,
         password: password,
       },
-      validationErrors: errors.array(),
+     // validationErrors: errors.array(),
     });
   }
   try{
@@ -47,26 +46,35 @@ exports.postLogin = async (req, res, next) => {
     if (userData.length < 1) {
           return res.status(422).render("auth/login", {
             path: "/login",
-            pageTitle: "Login",
+            pageTitle: "Anmelden",
             portalName: "Waschstraße",
             errorMessage: "benutzername oder passwort ungültig",
             oldInput: {
               username: username,
               password: password,
             },
-            validationErrors: errors.array(),
+           // validationErrors: errors.array(),
           });
         }
     if (userData[0].pass_word === password) {
-      //change salesportal/salesportal to just / and use session to save d user
-      //in d sales controller, u can check if type 1 0r 2 to use new manager or /////new attendant.
-      return res.status(200).render("salesportal/salesportal", {
-            path: "/",
-            pageTitle: "Sales Portal",
-            cashierName: userData[0].last_name,
-            id: userData[0].employee_id,
-          });
-        }
+      
+      req.session.user= userData[0];
+      req.session.isLoggedin = true;
+      await req.session.save();
+        return res.status(200).redirect('/');
+       
+    }
+      return res.status(422).render("auth/login", {
+        path: "/login",
+        pageTitle: "Anmelden",
+        portalName: "Waschstraße",
+        errorMessage: "benutzername oder passwort ungültig",
+        oldInput: {
+          username: username,
+          password: password,
+        },
+        //validationErrors: errors.array(),
+      });
         
       
   }
@@ -74,3 +82,13 @@ exports.postLogin = async (req, res, next) => {
   catch (error) { console.log(error);} 
 
 };
+exports.postLogout = async (req,res,next)=>{
+   try {
+     await req.session.destroy();
+     return res.redirect('/login');
+   } catch (error) {
+     console.log(error);
+   }
+  
+ 
+}

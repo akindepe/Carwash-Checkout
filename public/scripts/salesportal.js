@@ -117,7 +117,11 @@ barBtn.addEventListener("click",async () =>{
     });
     
     const response = await request.json();
-    resetEverything();
+    if(response.message){
+      console.log("printing ticket");
+       resetEverything();
+    }
+   
   } catch (error) {
     
   }
