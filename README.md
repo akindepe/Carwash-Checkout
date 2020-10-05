@@ -7,9 +7,10 @@ download nodejs : https://nodejs.org/en/download/
  download whole code 
 
 ```bash
- run npm install
+npm install
  
-##To do:
+
+## To do:
 * Prepaid card implementation
 * employees detail in admin mode
 * sales chart
