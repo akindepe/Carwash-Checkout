@@ -6,15 +6,17 @@ exports.getSalesportal = async (req, res, next) => {
   employeeId = req.session.user.employee_id;
   try {
     [services] = await Services.getAllServices();
-
+    
     return res.status(200).render("salesportal/salesportal", {
       path: "/",
       pageTitle: "Sales Portal",
       services: services,
       cashierName: req.session.user.last_name,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+     const error = new Error(err);
+     error.httpStatusCode = 500;
+     return next(error);
   }
 };
 exports.cancelOrder = async (req, res, next) => {
@@ -37,10 +39,12 @@ exports.cancelOrder = async (req, res, next) => {
       cancelledOrderId,
       foundTicket[0].ticket_id
     );
-    console.log("cancelled");
+    
     return res.status(200).json({ valid: true });
-  } catch (error) {
-    console.log("deleting catch here");
+  } catch (err) {
+     const error = new Error(err);
+     error.httpStatusCode = 500;
+     return next(error);
   }
 };
 exports.cashPayment = async (req, res, next) => {
@@ -65,7 +69,9 @@ exports.cashPayment = async (req, res, next) => {
       console.log("order placed");
     }
     return res.status(200).json({ message: true });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(error);
   }
 };

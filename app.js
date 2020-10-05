@@ -5,6 +5,7 @@ const MySQLStore = require("express-mysql-session")(session);
 const csrf = require("csurf");
 const flash = require('connect-flash');
 
+const errorController = require("./controllers/error");
 const path = require("./util/path");
 
 const app = express();
@@ -24,8 +25,9 @@ const csrfProtection = csrf();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const salesRoutes = require("./routes/sales");
 const authRoutes = require("./routes/auth");
+const salesRoutes = require("./routes/sales");
+const adminRoutes = require("./routes/admin");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -51,5 +53,9 @@ app.use((req, res, next) => {
 
 app.use(authRoutes);
 app.use(salesRoutes);
+app.use(adminRoutes);
+app.get("/500", errorController.get500);
+
+app.use(errorController.get404);
 
 app.listen(4000);

@@ -1,17 +1,23 @@
-const Employee= require('./employee.js');
-module.exports = class Manager extends Employee {
-  constructor(id, lastName, jobId) {
-    this.id = id;
-    this.lastName = lastName;
-    this.jobId = jobId;
+const dataBase = require("../util/database");
+module.exports = class Managers{
+  static getAllActiveEmployee() {
+    return dataBase.execute("SELECT * FROM employee WHERE end_date IS NULL ");
   }
-  getLastName() {
-    return this.lastName;
+  static getAllEmployee() {
+    return dataBase.execute("SELECT * FROM employee");
   }
-  getEmployeeId() {
-    return this.id;
+  static findActiveManagerFromUsername(userName) {
+    console.log("inside manager");
+    return  dataBase.execute(
+      "SELECT * FROM employee Where (username = ? AND job_id = ? AND end_date IS NULL)",
+      [userName, 1 ,]
+    );
+  
   }
-  getJobId() {
-    return this.jobId;
+
+  static findEmployeeById(employee_id) {
+    return dataBase.execute("SELECT * FROM employee Where employee_id= ?", [
+      employee_id,
+    ]);
   }
 };

@@ -21,6 +21,22 @@ router.post(
   ],
   authController.postLogin
 );
+router.get("/admin/login", authController.getAdminLogin);
+router.post(
+  "/admin/login",
+  [
+    check("username")
+      .isAlphanumeric()
+      .isLength({ min: 5 })
+      .withMessage("benutzername oder passwort ungültig "),
+
+    body("password", "benutzername oder passwort ungültig")
+      .isLength({ min: 5 })
+      .isAlphanumeric()
+      .trim(),
+  ],
+  authController.postAdminLogin
+);
 router.get("/logout", authController.postLogout);
 
 module.exports = router;

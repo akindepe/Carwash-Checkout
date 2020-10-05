@@ -13,7 +13,7 @@ module.exports = class Services {
   static getAllServices() {
     return dataBase.execute("SELECT * FROM service");
   }
- 
+
   static getServiceId(serviceName) {
     return dataBase.execute(
       "SELECT service_id FROM service WHERE service_name = ?",
